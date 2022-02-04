@@ -29,15 +29,15 @@ class CategorySelector extends HookWidget {
   CategorySelector(this.categories);
   @override
   Widget build(BuildContext context) {
-    final selectedCategories = useState(List<String>());
+    final selectedCategories = useState(<String>[]);
     return Column(
       children: [
-        RaisedButton(
+        ElevatedButton(
           child: Text("Select Fruit"),
           onPressed: () async {
             List<String> selection = await showDialog(
               context: context,
-              child: new Dialog(
+              builder: (BuildContext context) => Dialog(
                 child: CategorySelectorDialog(
                     categories, List.from(selectedCategories.value)),
               ),
@@ -107,13 +107,13 @@ class CategorySelectorDialog extends HookWidget {
                 );
               }),
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             Navigator.pop(context, currentSelection);
           },
           child: Text("Cancel"),
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             Navigator.pop(context, selectedCategories.value);
           },
